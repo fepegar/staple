@@ -19,8 +19,8 @@ class STAPLE:
             arrays: List[np.ndarray],
             maximization_first: bool = True,
             convergence_type: Convergence = Convergence.warfield,
-            sensitivity_init: float = 0.999_99,
-            specificity_init: float = 0.999_99,
+            sensitivity_init: float = 0.99999,
+            specificity_init: float = 0.99999,
             max_num_iterations: int = 1000,
             ):
         self.arrays = arrays
