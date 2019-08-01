@@ -25,8 +25,8 @@ Estimation (STAPLE) algorithm for generating ground truth volumes from
 a set of binary segmentations.
 
 The STAPLE algorithm is described in
-`S. Warfield, K. Zou, W. Wells, *Validation of image segmentation and
-expert quality with an expectation-maximization algorithm* in MICCAI 2002:
+`S. Warfield, K. Zou, W. Wells, Validation of image segmentation and
+expert quality with an expectation-maximization algorithm in MICCAI 2002:
 Fifth International Conference on Medical Image Computing and
 Computer-Assisted Intervention, Springer-Verlag, Heidelberg, Germany, 2002,
 pp. 298-306 <https://www.ncbi.nlm.nih.gov/pubmed/15250643/>`_.
