@@ -28,7 +28,7 @@ def get_real_arrays(force_download=False):
     for i, url in enumerate(urls):
         filepath = tempdir / 'radiologist_{}.mha'.format(i)
         if not filepath.is_file() or force_download:
-            urllib.request.urlretrieve(url, filepath)
+            urllib.request.urlretrieve(url, str(filepath))
         image = sitk.ReadImage(str(filepath), sitk.sitkUInt8)
         array = sitk.GetArrayFromImage(image)
         arrays.append(array)
