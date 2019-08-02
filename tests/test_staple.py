@@ -26,7 +26,7 @@ def get_real_arrays(force_download=False):
     tempdir = Path(tempfile.gettempdir())
     arrays = []
     for i, url in enumerate(urls):
-        filepath = tempdir / f'radiologist_{i}.mha'
+        filepath = tempdir / 'radiologist_{}.mha'.format(i)
         if not filepath.is_file() or force_download:
             urllib.request.urlretrieve(url, filepath)
         image = sitk.ReadImage(str(filepath), sitk.sitkUInt8)
