@@ -21,7 +21,7 @@ def get_real_arrays(force_download=False):
     import SimpleITK as sitk
     this_dir = Path(__file__).parent
     urls_path = this_dir / 'itk_urls.txt'
-    with open(urls_path) as f:
+    with open(str(urls_path)) as f:
         urls = f.readlines()
     tempdir = Path(tempfile.gettempdir())
     arrays = []
@@ -36,13 +36,6 @@ def get_real_arrays(force_download=False):
 
 
 @pytest.fixture
-def probabilities_small():
-    import numpy as np
-    result = 0, 0, 0, 0, 1, 1, 1, 1
-    return np.array(result, dtype=np.float64)
-
-
-@pytest.fixture
 def probabilities_real():
     import SimpleITK as sitk
     arrays = get_real_arrays()
@@ -50,22 +43,6 @@ def probabilities_real():
     staple_result = sitk.STAPLE(images)
     result = sitk.GetArrayFromImage(staple_result)
     return result
-
-
-def test_staple_small(probabilities_small):
-    import numpy as np
-    segmentations = (
-        (0, 0, 0, 0, 0, 1, 1, 0),
-        (0, 0, 0, 0, 1, 1, 1, 1),
-        (1, 1, 1, 0, 1, 1, 1, 1),
-        (0, 0, 0, 0, 1, 1, 1, 0),
-        (0, 1, 0, 0, 0, 1, 1, 1),
-        (0, 0, 1, 1, 0, 0, 1, 1),
-    )
-    arrays = [np.array(s, dtype=np.float64) for s in segmentations]
-    s = staple.STAPLE(arrays)
-    result = s.run()
-    np.testing.assert_equal(result, probabilities_small)
 
 
 def test_staple_real(probabilities_real):
