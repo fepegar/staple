@@ -3,9 +3,11 @@
 """Main module."""
 
 from enum import Enum
-from typing import List, Optional
+from pathlib import Path
+from typing import List, Optional, Union
 
 import numpy as np
+import SimpleITK as sitk
 
 
 class Convergence(Enum):
@@ -22,6 +24,8 @@ class STAPLE:
             sensitivity_init: float = 0.99999,
             specificity_init: float = 0.99999,
             max_num_iterations: int = 1000,
+            verbose: bool = False,
+            convergence_threshold: float = 1e-7,
             ):
         if not arrays:
             raise ValueError('arrays must be a list of NumPy arrays')
@@ -37,6 +41,8 @@ class STAPLE:
         self.output = None  # W
         self.prior = self._get_prior(self.decisions_matrix)
         self.max_num_iterations = max_num_iterations
+        self.verbose = verbose
+        self.convergence_threshold = convergence_threshold
         self._init()
 
     @staticmethod
@@ -70,7 +76,7 @@ class STAPLE:
             self.specificity = np.full(shape, self.specificity_init)
             self.specificity = self.specificity.astype(np.float64)
         self.previous_sum = -1
-        self.num_iterations = 0
+        self.num_iterations = 1
 
     def _run_expectation(self) -> None:
         p = self.sensitivity
@@ -120,6 +126,10 @@ class STAPLE:
         self.sensitivity = p
         self.specificity = q
 
+        if self.verbose:
+            print('Sensitivities:', p.ravel())
+            print('Specificities:', q.ravel())
+
     def _run_iteration(self) -> None:
         step_1, step_2 = self._run_expectation, self._run_maximization
         if self.maximization_first:
@@ -132,13 +142,17 @@ class STAPLE:
         if self.convergence_type == Convergence.warfield:
             current_sum = self.output.sum()
             diff = current_sum - self.previous_sum
+            if self.verbose:
+                print('Sum difference:', diff)
             self.previous_sum = current_sum
-            return diff == 0
+            return abs(diff) <= self.convergence_threshold
         else:
             raise NotImplementedError
 
     def run(self) -> Optional[np.ndarray]:
         while True:
+            if self.verbose:
+                print('Running iteration', self.num_iterations)
             self._run_iteration()
             if self._check_convergence():
                 success = True
@@ -146,10 +160,19 @@ class STAPLE:
             elif self.num_iterations == self.max_num_iterations:
                 success = False
                 break
-
+            if self.verbose:
+                print()
         if success:
+            if self.verbose:
+                print('\n\nConvergence reached after',
+                      self.num_iterations, 'iterations')
             one_shape = self.arrays[0].shape
             return self.output.reshape(one_shape)
         else:
             message = 'Maximum number of iterations reached before convergence'
             raise ValueError(message)
+
+
+def get_images(filepaths: List[Union[str, Path]]) -> List[sitk.Image]:
+    images = [sitk.ReadImage(str(path)) for path in filepaths]
+    return images
