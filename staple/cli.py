@@ -10,17 +10,20 @@ from staple import STAPLE, get_images
 @click.command()
 @click.argument('input_files', nargs=-1, type=click.Path(exists=True))
 @click.argument('output_file', nargs=1, type=click.Path())
-@click.option('--verbose/--no-shout', default=False)
-def main(input_files, output_file, verbose):
+@click.option('--verbose/--no-verbose', default=False)
+@click.option('--binarize/--probabilities', default=True)
+def main(input_files, output_file, verbose, binarize):
     """Run STAPLE algorithm on a set of binary expert segmentations."""
     images = get_images(input_files)
     arrays = [sitk.GetArrayFromImage(image) for image in images]
     staple = STAPLE(arrays, verbose=verbose)
     output_array = staple.run()
-    click.echo(f'Sensitivities: {staple.sensitivity.flatten()}')
-    click.echo(f'Specificities: {staple.specificity.flatten()}')
+    click.echo('Sensitivities: {}'.format(staple.sensitivity.flatten()))
+    click.echo('Specificities: {}'.format(staple.specificity.flatten()))
     output_image = sitk.GetImageFromArray(output_array)
     one_image = images[0]
+    if binarize:
+        output_image = sitk.BinaryThreshold(output_image, 0.5)
     output_image.SetSpacing(one_image.GetSpacing())
     output_image.SetOrigin(one_image.GetOrigin())
     output_image.SetDirection(one_image.GetDirection())
