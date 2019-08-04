@@ -12,11 +12,16 @@ from staple import STAPLE, get_images
 @click.argument('output_file', nargs=1, type=click.Path())
 @click.option('--verbose/--no-verbose', default=False)
 @click.option('--binarize/--probabilities', default=True)
-def main(input_files, output_file, verbose, binarize):
+@click.option('--convergence-threshold')
+def main(input_files, output_file, verbose, binarize, convergence_threshold):
     """Run STAPLE algorithm on a set of binary expert segmentations."""
     images = get_images(input_files)
     arrays = [sitk.GetArrayFromImage(image) for image in images]
-    staple = STAPLE(arrays, verbose=verbose)
+    staple = STAPLE(
+        arrays,
+        verbose=verbose,
+        convergence_threshold=convergence_threshold,
+    )
     output_array = staple.run()
     click.echo('Sensitivities: {}'.format(staple.sensitivity.flatten()))
     click.echo('Specificities: {}'.format(staple.specificity.flatten()))
