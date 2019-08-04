@@ -7,6 +7,7 @@ import click
 import SimpleITK as sitk
 from staple import STAPLE, get_images
 
+
 @click.command()
 @click.argument('input_files', nargs=-1, type=click.Path(exists=True))
 @click.argument('output_file', nargs=1, type=click.Path())
@@ -34,7 +35,6 @@ def main(input_files, output_file, verbose, binarize, convergence_threshold):
     output_image.SetDirection(one_image.GetDirection())
     sitk.WriteImage(output_image, output_file)
     return 0
-
 
 
 if __name__ == "__main__":

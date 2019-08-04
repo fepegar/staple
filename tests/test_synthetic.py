@@ -29,6 +29,6 @@ def test_staple_small(probabilities_small):
         (0, 0, 1, 1, 0, 0, 1, 1),
     )
     arrays = [np.array(s, dtype=np.float64) for s in segmentations]
-    s = staple.STAPLE(arrays)
+    s = staple.STAPLE(arrays, convergence_threshold=0)
     result = s.run()
-    np.testing.assert_equal(result, probabilities_small)
+    np.testing.assert_almost_equal(result, probabilities_small)
