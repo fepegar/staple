@@ -25,7 +25,7 @@ class STAPLE:
             specificity_init: float = 0.99999,
             max_num_iterations: int = 1000,
             verbose: bool = False,
-            convergence_threshold: float = 1e-7,
+            convergence_threshold: Optional[float] = None,
             ):
         if not arrays:
             raise ValueError('arrays must be a list of NumPy arrays')
@@ -42,7 +42,8 @@ class STAPLE:
         self.prior = self._get_prior(self.decisions_matrix)
         self.max_num_iterations = max_num_iterations
         self.verbose = verbose
-        self.convergence_threshold = convergence_threshold
+        if convergence_threshold is None:
+            self.convergence_threshold = 1e-7
         self._init()
 
     @staticmethod
