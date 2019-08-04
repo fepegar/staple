@@ -141,11 +141,11 @@ class STAPLE:
     def _check_convergence(self) -> bool:
         if self.convergence_type == Convergence.warfield:
             current_sum = self.output.sum()
-            diff = current_sum - self.previous_sum
+            diff = abs(current_sum - self.previous_sum)
             if self.verbose:
                 print('Sum difference:', diff)
             self.previous_sum = current_sum
-            return abs(diff) <= self.convergence_threshold
+            return diff <= self.convergence_threshold
         else:
             raise NotImplementedError
 
