@@ -5,16 +5,23 @@ STAPLE
 
 .. image:: https://img.shields.io/badge/License-MIT-yellow.svg
         :target: https://opensource.org/licenses/MIT
+        :alt: License
 
 .. image:: https://img.shields.io/pypi/v/staple.svg
         :target: https://pypi.python.org/pypi/staple
+        :alt: PyPI
 
 .. image:: https://img.shields.io/travis/fepegar/staple.svg
         :target: https://travis-ci.org/fepegar/staple
+        :alt: CI
 
 .. image:: https://readthedocs.org/projects/staple/badge/?version=latest
         :target: https://staple.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
+
+.. image:: https://coveralls.io/repos/github/fepegar/staple/badge.svg?branch=master
+        :target: https://coveralls.io/github/fepegar/staple?branch=master
+        :alt: Test coverage
 
 .. image:: https://pyup.io/repos/github/fepegar/staple/shield.svg
      :target: https://pyup.io/repos/github/fepegar/staple/
