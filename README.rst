@@ -3,6 +3,9 @@ STAPLE
 ======
 
 
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+        :target: https://opensource.org/licenses/MIT
+
 .. image:: https://img.shields.io/pypi/v/staple.svg
         :target: https://pypi.python.org/pypi/staple
 
@@ -12,7 +15,6 @@ STAPLE
 .. image:: https://readthedocs.org/projects/staple/badge/?version=latest
         :target: https://staple.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
-
 
 .. image:: https://pyup.io/repos/github/fepegar/staple/shield.svg
      :target: https://pyup.io/repos/github/fepegar/staple/
