@@ -48,11 +48,14 @@ Usage
 $ staple seg_1.nii.gz seg_2.nii.gz seg_3.nii.gz result.nii.gz
 
 
-Test
-----
+Caveats
+-------
 
-TODO
-
+- The `SimpleITK implementation <https://itk.org/SimpleITKDoxygen/html/classitk_1_1simple_1_1STAPLEImageFilter.html>`_
+  is about 16 times faster for the
+  `test images <https://github.com/fepegar/staple/blob/master/tests/itk_urls.txt>`_.
+  The implementation in this repository is mostly for educational purposes.
+- MRF is not implemented (neither is it in the `ITK version <https://github.com/InsightSoftwareConsortium/ITK/blob/master/Modules/Filtering/ImageCompare/include/itkSTAPLEImageFilter.hxx>`_).
 
 
 Credits
