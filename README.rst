@@ -58,7 +58,7 @@ Caveats
   `test images <https://github.com/fepegar/staple/blob/master/tests/itk_urls.txt>`_
   (0.7 s vs 11.8 s).
   The implementation in this repository is mostly for educational purposes.
-- Markov random field (MRF) preprocessing is not implemented (nor is it in the
+- Markov random field (MRF) postprocessing is not implemented (nor is it in the
   `ITK version <https://github.com/InsightSoftwareConsortium/ITK/blob/master/Modules/Filtering/ImageCompare/include/itkSTAPLEImageFilter.hxx>`_).
   If you need STAPLE with MRF, check out
   `NiftySeg <https://github.com/KCL-BMEIS/NiftySeg/blob/master/seg-lib/_seg_LabFusion.cpp>`_.
