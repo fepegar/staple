@@ -53,7 +53,8 @@ Caveats
 
 - The `SimpleITK implementation <https://itk.org/SimpleITKDoxygen/html/classitk_1_1simple_1_1STAPLEImageFilter.html>`_
   is about 16 times faster for the
-  `test images <https://github.com/fepegar/staple/blob/master/tests/itk_urls.txt>`_.
+  `test images <https://github.com/fepegar/staple/blob/master/tests/itk_urls.txt>`_
+  (0.7 s vs 11.8 s).
   The implementation in this repository is mostly for educational purposes.
 - Markov random field (MRF) preprocessing is not implemented (nor is it in the
   `ITK version <https://github.com/InsightSoftwareConsortium/ITK/blob/master/Modules/Filtering/ImageCompare/include/itkSTAPLEImageFilter.hxx>`_).
