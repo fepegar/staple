@@ -12,6 +12,7 @@ requirements = [
     'Click>=6.0',
     'numpy',
     'SimpleITK==1.2.0',
+    'sphinx-rtd-theme',
 ]
 
 setup_requirements = ['pytest-runner', ]
