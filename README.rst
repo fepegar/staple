@@ -67,8 +67,8 @@ Caveats
   The implementation in this repository is mostly for educational purposes.
 - Markov random field (MRF) postprocessing is not implemented (nor is it in the
   `ITK version <https://github.com/InsightSoftwareConsortium/ITK/blob/master/Modules/Filtering/ImageCompare/include/itkSTAPLEImageFilter.hxx>`_).
-  If you need STAPLE with MRF, check out
-  `NiftySeg <https://github.com/KCL-BMEIS/NiftySeg/blob/master/seg-lib/_seg_LabFusion.cpp>`_.
+  If you need STAPLE with MRF, check out Jorge Cardoso's
+  `NiftySeg <https://github.com/KCL-BMEIS/NiftySeg/blob/master/seg-lib/_seg_LabFusion.cpp#L648-L650>`_.
 
 
 Credits
