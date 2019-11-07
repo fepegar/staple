@@ -198,8 +198,8 @@ def run_staple(
         convergence_threshold=convergence_threshold,
     )
     output_array = staple.run()
-    click.echo('Sensitivities: {}'.format(staple.sensitivity.flatten()))
-    click.echo('Specificities: {}'.format(staple.specificity.flatten()))
+    print('Sensitivities: {}'.format(staple.sensitivity.flatten()))
+    print('Specificities: {}'.format(staple.specificity.flatten()))
     output_image = sitk.GetImageFromArray(output_array)
     if binarize:
         output_image = sitk.BinaryThreshold(output_image, 0.5)
