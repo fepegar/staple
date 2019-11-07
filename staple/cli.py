@@ -21,6 +21,7 @@ def main(input_files, output_file, verbose, binarize, convergence_threshold):
         binarize,
         convergence_threshold,
     )
+    return 0
 
 
 if __name__ == "__main__":
